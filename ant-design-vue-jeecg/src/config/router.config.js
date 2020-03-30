@@ -29,7 +29,6 @@ export const asyncRouterMap = [
       //       component: () => import(/* webpackChunkName: "result" */ '@/views/helloword/index'),
       //       meta: { title: '成功', hiddenHeaderContent: true, permission: [ 'result' ] }
       //     }
-         
       //   ]
       // },
 
