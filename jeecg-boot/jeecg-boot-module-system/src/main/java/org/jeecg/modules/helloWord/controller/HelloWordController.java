@@ -1,4 +1,4 @@
-package org.jeecg.modules.mytest.controller;
+package org.jeecg.modules.helloWord.controller;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -41,14 +41,14 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RestController
-@RequestMapping("/sys/common")
+@RequestMapping("/helloword")
 public class HelloWordController {
 
 
-    @GetMapping(value = "/test2")
+    @GetMapping(value = "/hello")
     public Result view(HttpServletRequest request, HttpServletResponse response) {
 
-        return Result.ok(1);
+        return Result.ok("hello world!");
 
     }
 

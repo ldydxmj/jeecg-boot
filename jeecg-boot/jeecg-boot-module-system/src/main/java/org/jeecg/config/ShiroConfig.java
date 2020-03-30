@@ -66,7 +66,8 @@ public class ShiroConfig {
 				filterChainDefinitionMap.put(url,"anon");
 			}
 		}
-
+		//配置hello-world;
+		filterChainDefinitionMap.put("/helloword/hello", "anon");
 		//cas验证登录
 		filterChainDefinitionMap.put("/cas/client/validateLogin", "anon");
 		// 配置不会被拦截的链接 顺序判断

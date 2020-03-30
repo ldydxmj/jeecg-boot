@@ -14,6 +14,25 @@ export const asyncRouterMap = [
     redirect: '/dashboard/workplace',
     children: [
 
+  // helloword
+  // TODO 这边待完成3.28.。。。
+      // {
+      //   path: '/helloword',
+      //   name: 'helloword',
+      //   component: PageView,
+      //   redirect: '/helloword/index',
+      //   meta: { title: 'helloword页', icon: 'check-circle-o', permission: [ 'result' ] },
+      //   children: [
+      //     {
+      //       path: '/helloword/index',
+      //       name: 'helloword',
+      //       component: () => import(/* webpackChunkName: "result" */ '@/views/helloword/index'),
+      //       meta: { title: '成功', hiddenHeaderContent: true, permission: [ 'result' ] }
+      //     }
+         
+      //   ]
+      // },
+
       // // dashboard
       // {
       //   path: '/dashboard',
