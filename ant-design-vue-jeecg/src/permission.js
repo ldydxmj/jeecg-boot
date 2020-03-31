@@ -33,6 +33,7 @@ router.beforeEach((to, from, next) => {
               store.dispatch('UpdateAppRouter',  { constRoutes }).then(() => {
                 // 根据roles权限生成可访问的路由表
                 // 动态添加可访问路由表
+                console.log('动态添加可访问路由表',store.getters.addRouters)
                 router.addRoutes(store.getters.addRouters)
                 const redirect = decodeURIComponent(from.query.redirect || to.path)
                 if (to.path === redirect) {

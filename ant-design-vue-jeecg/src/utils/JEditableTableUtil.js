@@ -88,6 +88,8 @@ export function validateTables(cases) {
     let index = 0;
     (function next() {
       let vm = cases[index]
+     
+    
       vm.getAll(true).then(all => {
         tables[index] = all
         // 判断校验是否全部完成，完成返回成功，否则继续进行下一步校验
@@ -103,6 +105,8 @@ export function validateTables(cases) {
         }
         reject(error)
       })
+    
+     
     })()
   })
 }

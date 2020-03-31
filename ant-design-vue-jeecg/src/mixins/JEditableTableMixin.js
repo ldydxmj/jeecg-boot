@@ -127,6 +127,7 @@ export const JEditableTableMixin = {
     handleOk() {
       /** 触发表单验证 */
       this.getAllTable().then(tables => {
+      console.log("handleOk -> tables", tables)
         /** 一次性验证主表和所有的次表 */
         return validateFormAndTables(this.form, tables)
       }).then(allValues => {
