@@ -13,7 +13,7 @@
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
-      <a-button type="primary" icon="download" @click="handleExportXls('学生表')">导出</a-button>
+      <a-button type="primary" icon="download" @click="handleExportXls('一对一学生表')">导出</a-button>
       <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
         <a-button type="primary" icon="import">导入</a-button>
       </a-upload>
@@ -83,24 +83,24 @@
       </a-table>
     </div>
 
-    <testOne2oneStudent-modal ref="modalForm" @ok="modalFormOk"></testOne2oneStudent-modal>
+    <testOne2onestudent-modal ref="modalForm" @ok="modalFormOk"></testOne2onestudent-modal>
   </a-card>
 </template>
 
 <script>
 
   import { JeecgListMixin } from '@/mixins/JeecgListMixin'
-  import TestOne2oneStudentModal from './modules/TestOne2oneStudentModal'
+  import TestOne2onestudentModal from './modules/TestOne2onestudentModal'
 
   export default {
-    name: "TestOne2oneStudentList",
+    name: "TestOne2onestudentList",
     mixins:[JeecgListMixin],
     components: {
-      TestOne2oneStudentModal
+      TestOne2onestudentModal
     },
     data () {
       return {
-        description: '学生表管理页面',
+        description: '一对一学生表管理页面',
         // 表头
         columns: [
           {
@@ -114,55 +114,9 @@
             }
           },
           {
-            title:'创建人',
+            title:'学号',
             align:"center",
-            dataIndex: 'createBy'
-          },
-          {
-            title:'创建日期',
-            align:"center",
-            dataIndex: 'createTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'更新人',
-            align:"center",
-            dataIndex: 'updateBy'
-          },
-          {
-            title:'更新日期',
-            align:"center",
-            dataIndex: 'updateTime',
-            customRender:function (text) {
-              return !text?"":(text.length>10?text.substr(0,10):text)
-            }
-          },
-          {
-            title:'性别',
-            align:"center",
-            dataIndex: 'sex'
-          },
-          {
-            title:'用户名',
-            align:"center",
-            dataIndex: 'name'
-          },
-          {
-            title:'班级',
-            align:"center",
-            dataIndex: 'mclass'
-          },
-          {
-            title:'年级',
-            align:"center",
-            dataIndex: 'gruade'
-          },
-          {
-            title:'班级中的学号',
-            align:"center",
-            dataIndex: 'studentNo'
+            dataIndex: 'xueNo'
           },
           {
             title: '操作',
@@ -172,11 +126,11 @@
           }
         ],
         url: {
-          list: "/one2onestudent/testOne2oneStudent/list",
-          delete: "/one2onestudent/testOne2oneStudent/delete",
-          deleteBatch: "/one2onestudent/testOne2oneStudent/deleteBatch",
-          exportXlsUrl: "/one2onestudent/testOne2oneStudent/exportXls",
-          importExcelUrl: "one2onestudent/testOne2oneStudent/importExcel",
+          list: "/one2one/testOne2onestudent/list",
+          delete: "/one2one/testOne2onestudent/delete",
+          deleteBatch: "/one2one/testOne2onestudent/deleteBatch",
+          exportXlsUrl: "/one2one/testOne2onestudent/exportXls",
+          importExcelUrl: "one2one/testOne2onestudent/importExcel",
         },
         dictOptions:{},
       }
