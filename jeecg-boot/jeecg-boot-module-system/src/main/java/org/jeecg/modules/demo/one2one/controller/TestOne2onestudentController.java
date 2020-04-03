@@ -1,49 +1,44 @@
 package org.jeecg.modules.demo.one2one.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
+import org.jeecg.common.api.vo.Result;
+import org.jeecg.common.aspect.annotation.AutoLog;
+import org.jeecg.common.system.query.QueryGenerator;
+import org.jeecg.common.system.vo.LoginUser;
+import org.jeecg.common.util.oConvertUtils;
+import org.jeecg.modules.demo.one2one.entity.TestOne2oneHeadthy;
+import org.jeecg.modules.demo.one2one.entity.TestOne2onestudent;
 import org.jeecg.modules.demo.one2one.model.TestOne2onestudentFullModel;
-import org.jeecg.modules.system.model.SysLoginModel;
+import org.jeecg.modules.demo.one2one.service.ITestOne2oneHeadthyService;
+import org.jeecg.modules.demo.one2one.service.ITestOne2onestudentService;
+import org.jeecg.modules.demo.one2one.vo.TestOne2onestudentPage;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.def.NormalExcelConstants;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
 import org.jeecgframework.poi.excel.view.JeecgEntityExcelView;
-import org.jeecg.common.system.vo.LoginUser;
-import org.apache.shiro.SecurityUtils;
-import org.jeecg.common.api.vo.Result;
-import org.jeecg.common.system.query.QueryGenerator;
-import org.jeecg.common.util.oConvertUtils;
-import org.jeecg.modules.demo.one2one.entity.TestOne2oneHeadthy;
-import org.jeecg.modules.demo.one2one.entity.TestOne2onestudent;
-import org.jeecg.modules.demo.one2one.vo.TestOne2onestudentPage;
-import org.jeecg.modules.demo.one2one.service.ITestOne2onestudentService;
-import org.jeecg.modules.demo.one2one.service.ITestOne2oneHeadthyService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import lombok.extern.slf4j.Slf4j;
-import com.alibaba.fastjson.JSON;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.jeecg.common.aspect.annotation.AutoLog;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
  /**
  * @Description: 一对一学生表
@@ -108,9 +103,10 @@ public class TestOne2onestudentController {
 		 result.success("成功!");
 		 return result;
 	 }
+
 	 /**
-	  * 返回list-all-page
-	  * @param testOne2onestudent
+	  *
+	  * @param testOne2onestudentFullModel
 	  * @param pageNo
 	  * @param pageSize
 	  * @param req
