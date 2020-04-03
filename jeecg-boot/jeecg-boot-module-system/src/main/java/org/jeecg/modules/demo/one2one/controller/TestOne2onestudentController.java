@@ -12,6 +12,9 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSONObject;
+import org.jeecg.modules.demo.one2one.model.TestOne2onestudentFullModel;
+import org.jeecg.modules.system.model.SysLoginModel;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.def.NormalExcelConstants;
 import org.jeecgframework.poi.excel.entity.ExportParams;
@@ -80,31 +83,34 @@ public class TestOne2onestudentController {
 		return Result.ok(pageList);
 	}
 
-//	 /**
-//	  * 分页列表查询-合表
-//	  *
-//	  * @param testOne2onestudent
-//	  * @param pageNo
-//	  * @param pageSize
-//	  * @param req
-//	  * @return
-//	  */
-//	 @AutoLog(value = "一对一学生表-分页列表查询")
-//	 @ApiOperation(value="一对一学生表-分页列表查询", notes="一对一学生表-分页列表查询")
-//	 @GetMapping(value = "/listAll")
-//	 public Result<?> queryPageList2(TestOne2onestudent testOne2onestudent,
-//									@RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
-//									@RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
-//									HttpServletRequest req) {
-//		 QueryWrapper<TestOne2onestudent> queryWrapper = QueryGenerator.initQueryWrapper(testOne2onestudent, req.getParameterMap());
-//		 Page<TestOne2onestudent> page = new Page<TestOne2onestudent>(pageNo, pageSize);
-//		 IPage<TestOne2onestudent> pageList = testOne2onestudentService.pageFull(page, queryWrapper);
-//		 return Result.ok(pageList);
-//	 }
+
+	 /**
+	  * 返回list-all
+	  * @param testOne2onestudent
+	  * @param pageNo
+	  * @param pageSize
+	  * @param req
+	  * @return
+	  */
+	 @ApiOperation("返回json")
+	 @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	 public Result<JSONObject> backjson(TestOne2onestudent testOne2onestudent,
+									@RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+									@RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+									HttpServletRequest req) {
+		 Result<JSONObject> result = new Result<JSONObject>();
+		 Page<TestOne2onestudent> page = new Page<TestOne2onestudent>(pageNo, pageSize);
+		 QueryWrapper<TestOne2onestudent> queryWrapper = QueryGenerator.initQueryWrapper(testOne2onestudent, req.getParameterMap());
+		 List<TestOne2onestudentFullModel> pageList = testOne2onestudentService.page2();
+		 JSONObject obj = new JSONObject();
+		 obj.put("list", pageList);
+		 result.setResult(obj);
+		 result.success("成功!");
+		 return result;
+	 }
 
 
-
-	/**
+	 /**
 	 *   添加
 	 *
 	 * @param testOne2onestudentPage

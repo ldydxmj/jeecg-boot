@@ -1,9 +1,11 @@
 package org.jeecg.modules.demo.one2one.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.jeecg.modules.demo.one2one.entity.TestOne2onestudent;
 import org.jeecg.modules.demo.one2one.entity.TestOne2oneHeadthy;
 import org.jeecg.modules.demo.one2one.mapper.TestOne2oneHeadthyMapper;
 import org.jeecg.modules.demo.one2one.mapper.TestOne2onestudentMapper;
+import org.jeecg.modules.demo.one2one.model.TestOne2onestudentFullModel;
 import org.jeecg.modules.demo.one2one.service.ITestOne2onestudentService;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -73,5 +75,10 @@ public class TestOne2onestudentServiceImpl extends ServiceImpl<TestOne2onestuden
 			testOne2onestudentMapper.deleteById(id);
 		}
 	}
-	
+
+	@Override
+	@Transactional
+	public List<TestOne2onestudentFullModel> page2() {
+return  testOne2onestudentMapper.listAll();
+	}
 }

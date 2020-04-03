@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -102,7 +103,27 @@ public class LoginController {
 
 		return result;
 	}
-	
+
+	/**
+	 * 返回json测试
+	 * @param sysLoginModel
+	 * @return
+	 */
+	@ApiOperation("返回json")
+	@RequestMapping(value = "/backjson", method = RequestMethod.POST)
+	public Result<JSONObject> backjson(@RequestBody SysLoginModel sysLoginModel) {
+		Result<JSONObject> result = new Result<JSONObject>();
+		JSONObject obj = new JSONObject();
+
+		obj.put("token22", "1222222222");
+		obj.put("userInfo", "222222");
+//TODO 增加遍历sysloginModel
+
+		result.setResult(obj);
+		result.success("返回json测试成功!");
+		return result;
+	}
+
 	/**
 	 * 退出登录
 	 * @param request
