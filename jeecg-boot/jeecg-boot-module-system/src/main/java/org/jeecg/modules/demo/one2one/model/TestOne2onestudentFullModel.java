@@ -65,9 +65,9 @@ public class TestOne2onestudentFullModel implements Serializable {
     /**年龄*/
     @Excel(name = "年龄", width = 15)
     @ApiModelProperty(value = "年龄")
-    private java.lang.Double age;
+    private java.lang.Integer age;
     /**上次打针时间*/
-    @Excel(name = "上次打针时间", width = 15, format = "yyyy-MM-dd")
+    @Excel(name = "上次打针时间", width = 15, format = "yyyy-MM-dd ")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @ApiModelProperty(value = "上次打针时间")
@@ -76,4 +76,8 @@ public class TestOne2onestudentFullModel implements Serializable {
     @Excel(name = "备注", width = 15)
     @ApiModelProperty(value = "备注")
     private java.lang.String mark;
+    /**状态*/
+    @Excel(name = "备注", width = 15)
+    @ApiModelProperty(value = "备注")
+    private java.lang.Integer status;
 }

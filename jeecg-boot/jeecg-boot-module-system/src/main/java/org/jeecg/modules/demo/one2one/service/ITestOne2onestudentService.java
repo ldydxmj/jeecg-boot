@@ -1,9 +1,12 @@
 package org.jeecg.modules.demo.one2one.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.jeecg.modules.demo.one2one.entity.TestOne2oneHeadthy;
 import org.jeecg.modules.demo.one2one.entity.TestOne2onestudent;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.jeecg.modules.demo.one2one.model.TestOne2onestudentFullModel;
+import org.jeecg.modules.system.model.AnnouncementSendModel;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -40,5 +43,7 @@ public interface ITestOne2onestudentService extends IService<TestOne2onestudent>
 	public void delBatchMain (Collection<? extends Serializable> idList);
 
 	public  List<TestOne2onestudentFullModel> page2();
+	public Page<TestOne2onestudentFullModel>  page3(Page<TestOne2onestudentFullModel> page, QueryWrapper<TestOne2onestudentFullModel> queryWrapper);
+
 	
 }

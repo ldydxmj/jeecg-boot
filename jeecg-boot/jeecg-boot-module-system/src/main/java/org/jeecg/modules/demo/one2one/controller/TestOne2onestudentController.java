@@ -108,7 +108,30 @@ public class TestOne2onestudentController {
 		 result.success("成功!");
 		 return result;
 	 }
-
+	 /**
+	  * 返回list-all-page
+	  * @param testOne2onestudent
+	  * @param pageNo
+	  * @param pageSize
+	  * @param req
+	  * @return
+	  */
+	 @ApiOperation("返回json")
+	 @RequestMapping(value = "/listAllPage", method = RequestMethod.GET)
+	 public Result<JSONObject> backjsonPage(TestOne2onestudentFullModel testOne2onestudentFullModel,
+										@RequestParam(name="pageNo", defaultValue="1") Integer pageNo,
+										@RequestParam(name="pageSize", defaultValue="10") Integer pageSize,
+										HttpServletRequest req) {
+		 Result<JSONObject> result = new Result<JSONObject>();
+		 Page<TestOne2onestudentFullModel> page = new Page<TestOne2onestudentFullModel>(pageNo, pageSize);
+		 QueryWrapper<TestOne2onestudentFullModel> queryWrapper = QueryGenerator.initQueryWrapper(testOne2onestudentFullModel, req.getParameterMap());
+		 IPage<TestOne2onestudentFullModel> pageList = testOne2onestudentService.page3(page,queryWrapper);
+		 JSONObject obj = new JSONObject();
+		 obj.put("page", pageList);
+		 result.setResult(obj);
+		 result.success("成功!");
+		 return result;
+	 }
 
 	 /**
 	 *   添加

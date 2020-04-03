@@ -1,5 +1,6 @@
 package org.jeecg.modules.demo.one2one.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.jeecg.modules.demo.one2one.entity.TestOne2onestudent;
 import org.jeecg.modules.demo.one2one.entity.TestOne2oneHeadthy;
@@ -80,5 +81,11 @@ public class TestOne2onestudentServiceImpl extends ServiceImpl<TestOne2onestuden
 	@Transactional
 	public List<TestOne2onestudentFullModel> page2() {
 return  testOne2onestudentMapper.listAll();
+	}
+
+	@Override
+	@Transactional
+	public Page<TestOne2onestudentFullModel> page3(Page<TestOne2onestudentFullModel> page, QueryWrapper<TestOne2onestudentFullModel> queryWrapper) {
+		return  testOne2onestudentMapper.listAllPage(page,queryWrapper);
 	}
 }
